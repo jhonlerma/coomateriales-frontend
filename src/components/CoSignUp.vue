@@ -80,7 +80,6 @@ export default{
 .signUp_user h2
 {
     color: #283747;
-
 }
  .signUp_user form
 {
@@ -94,7 +93,6 @@ export default{
     padding: 10px 20px;
     margin: 5px 0;
     border: 1px solid #283747;
-
 }
  .signUp_user button
 {

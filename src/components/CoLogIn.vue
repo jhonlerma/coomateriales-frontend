@@ -28,7 +28,7 @@ export default{
     methods:{
         processLogInUser: function(){
             axios.post(
-                "https://mision-tic-c3-g6.herokuapp.com/login/",
+                "https://coomateriales-backend.herokuapp.com/login/",
                 this.user,
                 {headers:{}}
             )
