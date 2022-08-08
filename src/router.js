@@ -5,6 +5,7 @@ import CoLogIn from './components/CoLogIn.vue'
 import CoSignUp from './components/CoSignUp.vue'
 import CoHome from './components/CoHome.vue'
 import CoAccount from './components/CoAccount.vue'
+import CoSignUpProveedor from './components/CoSignUpProveedor.vue'
 
 
 const routes = [
@@ -22,6 +23,11 @@ const routes = [
     path: '/user/SignUp',
     name: 'coSignUp',
     component: CoSignUp
+  },
+  {
+    path: '/proveedor/SignUp',
+    name: 'coSignUpProveedor',
+    component: CoSignUpProveedor
   },
   {
     path: '/user/home',
