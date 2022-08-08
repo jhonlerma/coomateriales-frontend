@@ -1,0 +1,141 @@
+:root {
+
+    /* variables colores tema*/
+
+    --primary-color: #333333;
+    --on-primary-color: #ffffff;
+    --secondary-color: #2cb67d;
+    --on-secondary-color: #ffffff;
+    --background-color: #F9F9F9F0;
+    --on-backround-color: #343a40;
+    --surface-color: #ffffff;
+    --on-surface-color: #6c757d;
+    --error-color: #dc3545;
+    --on-error-color: #ffffff;
+    --success-color: #28a745;
+    --on-Success-color: #ffffff;
+    --warning-color: #ffc107;
+    --on-warning-color: #343a40;
+    --info-color: #17a2b8;
+    --on-info-color: #ffffff;
+    --muted-color: #6c757d;
+    --on-muted-color: #ffffff;
+
+
+    font-size: 62.5%;
+    font-family: 'DM Sans', sans-serif;
+}
+
+* {
+
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+header{
+
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    top: 0;
+    width: 100%;
+    min-width: 32rem;
+    height: 5.2rem;
+    background: var(--primary-color);
+}
+
+nav{
+
+    position: relative;
+    padding: 1rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+nav img{
+    display: flex;
+    height: 2.8rem;
+}
+
+nav .links-section{
+    display: flex;
+    justify-self: center;
+}
+
+nav .links-section--input{
+    display: flex;
+    padding: 0.8rem;
+    border: none;
+    border-radius: 0.4rem;
+    background-color: var(--background-color);
+    color: var(--on-backround-color);
+}
+
+nav .links-section--login-button{
+
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    margin-left: 0.4rem;
+    padding: 0.8rem;
+    border: none;
+    border-radius: 0.4rem;
+    color: var(--on-secondary-color);
+    background-color: var(--secondary-color);
+    font-weight: 700;
+}
+
+nav .links-section--login-button:hover{
+    filter: brightness(1.04);
+}
+
+nav .links-section--login-button span{
+    display: flex;
+    height: 1.6rem;
+    width: 1.6rem;
+    margin-right: 0.4rem;
+    background-image: url('../icons/check-circle.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+
+}
+
+nav .links-section--register-button{
+
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    margin-left: 0.4rem;
+    padding: 0.8rem;
+    border: none;
+    border-radius: 0.4rem;
+    color: var(--on-surface-color);
+    background-color: var(--surface-color);
+    font-weight: 700;
+}
+
+nav .links-section--register-button:hover{
+    filter: brightness(0.925);
+}
+
+nav .links-section--register-button span{
+    display: flex;
+    height: 1.6rem;
+    width: 1.6rem;
+    margin-right: 0.4rem;
+    background-image: url('../icons/check-circle.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+
+}
+
+main{
+
+    height: auto;
+    width: 100%;
+    min-width: 32rem;
+    background-color: var(--background-color);
+}
