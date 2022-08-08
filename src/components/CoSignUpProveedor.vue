@@ -35,7 +35,7 @@
 <script>
 import axios from 'axios';
 export default {
-    name: 'CoSignUpProveedores',
+    name: 'CoSignUpProveedor',
     data: function () {
         return {
             userProveedor: {
