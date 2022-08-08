@@ -1,5 +1,4 @@
 <template>
-  <div id="app" class="app">
     <header>
       <co-appbar></co-appbar>
     </header>
@@ -13,7 +12,6 @@
     <footer>
       <h2>Que viva el comunismo y los mamertos 2022</h2>
     </footer>
-  </div>
 </template>
 
 <script>
@@ -32,35 +30,6 @@ export default{
         this.$router.push({name:'coLogIn'});
       else
         this.$router.push({name:'coHome'});
-    },
-    loadLogIn: function(){
-      this.$router.push({name:'coLogIn'})    
-    },
-    loadSignUp: function(){
-      this.$router.push({name:'coSignUp'})    
-    },
-    loadHome: function(){
-      this.$router.push({name:'coHome'})
-    },
-    loadAccount: function(){
-      this.$router.push({name:'coAccount'})
-    },
-    logOut: function(){
-      localStorage.clear();
-      alert("Sesión cerrada");
-      this.verifyAuth();
-    },    
-    completedLogIn: function(data){
-      localStorage.setItem("token_access",data.token_access);
-      localStorage.setItem("token_refresh",data.token_refresh);
-      localStorage.setItem("username",data.username);
-      localStorage.setItem("isAuth",true);
-      alert("Autentación exitosa");
-      this.verifyAuth();
-    },
-    completedSignUp: function(data){
-      alert("Registro exitoso");
-      this.completedLogIn(data)
     },
   },
   components:{

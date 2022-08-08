@@ -19,7 +19,7 @@
 
 <script>
 import axios from 'axios';
-import jwt_decode from 'jwt-decode';
+// import jwt_decode from 'jwt-decode';
 export default {
   name: 'CoAppbar',
   data: function () {
@@ -31,27 +31,34 @@ export default {
     }
   },
   methods: {
-    getData: async function () {
-      if (localStorage.getItem("token_access") === null || localStorage.getItem("token_refresh") === null) {
-        this.$emit('logOut');
-        return;
-      }
-      await this.verifyToken();
-      let token = localStorage.getItem("token_access");
-      let userId = jwt_decode(token).user_id.toString();
-      axios.get(
-        `https://mision-tic-c3-g6.herokuapp.com/user/${userId}/`,
-        { headers: { 'Authorization': `Bearer ${token}` } }
-      )
-        .then((result) => {
-          this.name = result.data.name,
-            this.email = result.data.email,
-            this.balance = result.data.account.balance,
-            this.loaded = true;
-        })
-        .catch(() => {
-          this.$emit('logOut');
-        });
+    loadLogIn: function(){
+      this.$router.push({name:'coLogIn'})    
+    },
+    loadSignUp: function(){
+      this.$router.push({name:'coSignUp'})    
+    },
+    loadHome: function(){
+      this.$router.push({name:'coHome'})
+    },
+    loadAccount: function(){
+      this.$router.push({name:'coAccount'})
+    },
+    logOut: function(){
+      localStorage.clear();
+      alert("Sesión cerrada");
+      this.verifyAuth();
+    },    
+    completedLogIn: function(data){
+      localStorage.setItem("token_access",data.token_access);
+      localStorage.setItem("token_refresh",data.token_refresh);
+      localStorage.setItem("username",data.username);
+      localStorage.setItem("isAuth",true);
+      alert("Autentación exitosa");
+      this.verifyAuth();
+    },
+    completedSignUp: function(data){
+      alert("Registro exitoso");
+      this.completedLogIn(data)
     },
     verifyToken: function () {
       return axios.post(

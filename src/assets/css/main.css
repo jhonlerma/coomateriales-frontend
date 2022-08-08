@@ -6,7 +6,7 @@
     --on-primary-color: #ffffff;
     --secondary-color: #2cb67d;
     --on-secondary-color: #ffffff;
-    --background-color: #F9F9F9F0;
+    --background-color: #fffffff0;
     --on-backround-color: #343a40;
     --surface-color: #ffffff;
     --on-surface-color: #6c757d;
@@ -33,6 +33,12 @@
     box-sizing: border-box;
 }
 
+body{
+    display: flex;
+    flex-direction: column;
+    min-width: 100%;
+}
+
 header{
 
     position: fixed;
@@ -44,11 +50,10 @@ header{
     min-width: 32rem;
     height: 5.2rem;
     background: var(--primary-color);
+    box-shadow: 0 .5rem 1rem rgba(0,0,0,.15);
 }
 
 nav{
-
-    position: relative;
     padding: 1rem;
     display: flex;
     flex-direction: row;
@@ -133,9 +138,18 @@ nav .links-section--register-button span{
 }
 
 main{
-
+    display: flex;
+    /* position: relative; */
+    margin-top: 5.2rem;
+    padding: 0 3.2rem;
     height: auto;
     width: 100%;
     min-width: 32rem;
     background-color: var(--background-color);
+}
+
+footer{
+    display: flex;
+    padding: 3.2rem;
+    /* position: relative; */
 }
