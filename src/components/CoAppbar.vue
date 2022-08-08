@@ -18,8 +18,6 @@
 </template>
 
 <script>
-import axios from 'axios';
-// import jwt_decode from 'jwt-decode';
 export default {
   name: 'CoAppbar',
   data: function () {
@@ -46,33 +44,8 @@ export default {
     logOut: function(){
       localStorage.clear();
       alert("Sesión cerrada");
-      this.verifyAuth();
+      this.$emit('verifyAuth');
     },    
-    completedLogIn: function(data){
-      localStorage.setItem("token_access",data.token_access);
-      localStorage.setItem("token_refresh",data.token_refresh);
-      localStorage.setItem("username",data.username);
-      localStorage.setItem("isAuth",true);
-      alert("Autentación exitosa");
-      this.verifyAuth();
-    },
-    completedSignUp: function(data){
-      alert("Registro exitoso");
-      this.completedLogIn(data)
-    },
-    verifyToken: function () {
-      return axios.post(
-        "https://mision-tic-c3-g6.herokuapp.com/refresh/",
-        { refresh: localStorage.getItem("token_refresh") },
-        { headers: {} })
-        .then((result) => {
-          localStorage.setItem("token_access", result.data.access);
-        })
-        .catch(() => {
-          this.$emit('logOut')
-        })
-    }
-
   },
   created: async function () {
     this.getData();
