@@ -1,20 +1,28 @@
 <template>
-  <nav>
 
-    <img src="../assets/logo.png" alt="">
-    <!-- <div class="search">
-            <input class="search--input" type="text" name="searchInput" id="searchInput">
-            <button class="search--button"><span></span>buscar</button>
-        </div> -->
+  <nav class="navbar bg-dark">
+    <div class="container-fluid mx-3">
+      <a class="navbar-brand" href="#">
+        <img src="../assets/logo.png" alt="logo coomateriales blanco" height="28">
+      </a>
+      <div class="links-section">
+      <button v-if="is_auth_props" v-on:click="loadAccount" class="btn btn-secondary">Cuenta</button>
+      <button v-if="is_auth_props" v-on:click="logOut" class="btn btn-danger ms-3">Cerrar Sesión</button>
+      <button v-if="!is_auth_props" v-on:click="loadSignUp" class="btn btn-light">Registrarse</button>
+      <button v-if="!is_auth_props" v-on:click="loadLogIn" class="btn btn-success ms-3">Iniciar Sesión</button>
+    </div>
 
-    <div class="links-section">
-      <button v-if="is_auth" v-on:click="loadHome">Inicio</button>
-      <button v-if="is_auth" v-on:click="loadAccount">Cuenta</button>
-      <button v-if="is_auth" v-on:click="logOut">Cerrar Sesión</button>
-      <button class="links-section--register-button" v-if="!is_auth" v-on:click="loadSignUp">Registrarse</button>
-      <button class="links-section--login-button" v-if="!is_auth" v-on:click="loadLogIn">Iniciar Sesión</button>
     </div>
   </nav>
+  <!-- <nav>
+    <img src="../assets/logo.png" alt="logo coomateriales blanco" v-on:click="loadHome">
+    <div class="links-section">
+      <button v-if="is_auth_props" v-on:click="loadAccount" class="btn btn-secondary">Cuenta</button>
+      <button v-if="is_auth_props" v-on:click="logOut" class="btn btn-danger ms-3">Cerrar Sesión</button>
+      <button v-if="!is_auth_props" v-on:click="loadSignUp" class="btn btn-light">Registrarse</button>
+      <button v-if="!is_auth_props" v-on:click="loadLogIn" class="btn btn-success ms-3">Iniciar Sesión</button>
+    </div>
+  </nav> -->
 </template>
 
 <script>
@@ -27,6 +35,12 @@ export default {
       balance: 0,
       loaded: false,
     }
+  },
+  props:{
+  is_auth_props: {
+    type: Boolean,
+    required: true
+  }
   },
   methods: {
     loadLogIn: function(){

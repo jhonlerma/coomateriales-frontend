@@ -1,13 +1,19 @@
 <template>
-  <div class="logIn_user">
-    <div class="container_logIn_user">
+  <div class="card col-6 justify-self-center">
+    <div class="card-header">
+      Inicio de Sesión
+    </div>
+    <div class="card-body">
       <form v-on:submit.prevent="processLogInUser">
-        <input type="text" v-model="user.username" placeholder="Nombre de usuario">
-        <br>
-        <input type="password" v-model="user.password" placeholder="Contraseña">
-        <br>
-        <button type="submit">Iniciar Sesión</button>
-      </form>
+      <label for="userInput" class="form-label">Usuario</label>
+      <input type="text" class="form-control mb-3" v-model="user.username" placeholder="Nombre de usuario"
+        name="userInput">
+      <label for="passwordInput" class="form-label">Contraseña</label>
+      <input type="password" class="form-control mb-3" v-model="user.password" placeholder="Contraseña"
+        name="passwordInput">
+      <button type="submit" class="btn btn-primary mt-3">Iniciar Sesión</button>
+    </form>
+
     </div>
   </div>
 </template>
