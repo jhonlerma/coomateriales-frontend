@@ -6,6 +6,9 @@ import CoSignUp from './components/CoSignUp.vue'
 import CoHome from './components/CoHome.vue'
 import CoAccount from './components/CoAccount.vue'
 import CoSignUpProveedor from './components/CoSignUpProveedor.vue'
+import CoSignUpCategoria from './components/CoSignUpCategoria.vue'
+import CoSignUpFabricante from './components/CoSignUpFabricante.vue'
+import CoSignUpProducto from './components/CoSignUpProducto.vue'
 
 
 const routes = [
@@ -28,6 +31,21 @@ const routes = [
     path: '/proveedor/SignUp',
     name: 'coSignUpProveedor',
     component: CoSignUpProveedor
+  },
+  {
+    path: '/Categoria/SignUp',
+    name: 'coSignUpCategoria',
+    component: CoSignUpCategoria
+  },
+  {
+    path: '/fabricante/SignUp',
+    name: 'coSignUpFabricante',
+    component: CoSignUpFabricante
+  },
+  {
+    path: '/producto/SignUp',
+    name: 'coSignUpProducto',
+    component: CoSignUpProducto
   },
   {
     path: '/user/home',

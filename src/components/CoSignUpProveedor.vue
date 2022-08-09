@@ -8,27 +8,27 @@
                         <form v-on:submit.prevent="processSignUp">
                             <div class="mb-3">
                                 <label class="form-label">Nit</label>
-                                <input type="text" class="form-control" v-model="userProveedor.nit_proveedor"
+                                <input type="text" class="form-control" v-model="Proveedor.nit_proveedor"
                                     placeholder="Nit">
                             </div>
                             <div class="mb-3">
                                 <label class="form-label">Nombre</label>
-                                <input type="text" class="form-control" v-model="userProveedor.nombre_proveedor"
+                                <input type="text" class="form-control" v-model="Proveedor.nombre_proveedor"
                                     placeholder="Nombre">
                             </div>
                             <div class="mb-3">
                                 <label class="form-label">Teléfono</label>
-                                <input type="text" class="form-control" v-model="userProveedor.telefono_proveedor"
+                                <input type="text" class="form-control" v-model="Proveedor.telefono_proveedor"
                                     placeholder="Teléfono">
                             </div>
                             <div class="mb-3">
                                 <label class="form-label">Correo electrónico</label>
-                                <input type="email" class="form-control" v-model="userProveedor.correo_proveedor"
+                                <input type="email" class="form-control" v-model="Proveedor.correo_proveedor"
                                     placeholder="Correo electrónico">
                             </div>
                             <div class="mb-3">
                                 <label class="form-label">Dirección</label>
-                                <input type="text" class="form-control" v-model="userProveedor.direccion_proveedor"
+                                <input type="text" class="form-control" v-model="Proveedor.direccion_proveedor"
                                     placeholder="Dirección">
                             </div>
                             <button type="submit" class="btn btn-primary">Registrar</button>
@@ -46,7 +46,7 @@ export default {
     name: 'CoSignUpProveedore',
     data: function () {
         return {
-            userProveedor: {
+            Proveedor: {
                 nit_proveedor: "",
                 nombre_proveedor: "",
                 telefono_proveedor: "",
@@ -59,16 +59,16 @@ export default {
         processSignUp: function () {
             axios.post(
                 "https://coomateriales-backend.herokuapp.com/proveedor/create/",
-                this.userProveedor,
+                this.Proveedor,
                 { headers: {} }
             )
                 .then((result) => {
                     let dataSignUp = {
                         token_access: result.data.access,
                         token_refresh: result.data.refresh,
-                        nit_proveedor: this.userProveedor.nit_proveedor
+                        nit_proveedor: this.Proveedor.nit_proveedor
                     }
-                    this.$emit('completedSignUp', dataSignUp)
+                    this.$emit('completedSignUpProveedores', dataSignUp)
                 })
                 .catch((error) => {
                     console.log(error)

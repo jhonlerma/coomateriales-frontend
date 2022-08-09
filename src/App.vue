@@ -3,11 +3,17 @@
       <co-appbar></co-appbar>
     </header>
     <main>
+      <co-dashboard></co-dashboard>
       <router-view v-on:completedLogIn="completedLogIn"
-                   v-on:completedSignUp="completedSignUp"
-                   v-on:logOut="logOut">
-      </router-view>
+                     v-on:completedSignUp="completedSignUp"
+                     v-on:logOut="logOut"
+                     v-on:completedSignUpProveedores="completedSignUpProveedores"
+                     v-on:completedSignUpCategoria="completedSignUpCategoria"
+                     v-on:completedSignUpProducto="completedSignUpProducto"
+                     v-on:completedSignUpFabricante="completedSignUpFabricante"
+                     >
 
+        </router-view>
     </main>
     <footer>
       <h2>Que viva el comunismo y los mamertos 2022</h2>
@@ -16,6 +22,7 @@
 
 <script>
 import CoAppbar from './components/CoAppbar.vue'
+import CoDashboard from './components/CoDashboard.vue'
 export default{
   name: 'App',
   data: function(){
@@ -34,6 +41,7 @@ export default{
   },
   components:{
     CoAppbar,
+    CoDashboard,
   },
   created: function (){
     this.verifyAuth()
