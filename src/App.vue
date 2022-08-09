@@ -1,10 +1,11 @@
 <template>
     <header>
-      <co-appbar></co-appbar>
+      <co-appbar v-bind:is_auth_props="is_auth"></co-appbar>
     </header>
     <main>
       <co-dashboard></co-dashboard>
-      <router-view v-on:completedLogIn="completedLogIn"
+      <section class="container-fluid p-5">
+        <router-view v-on:verifyAuth="verifyAuth"
                      v-on:completedSignUp="completedSignUp"
                      v-on:logOut="logOut"
                      v-on:completedSignUpProveedores="completedSignUpProveedores"
@@ -14,6 +15,8 @@
                      >
 
         </router-view>
+
+      </section>
     </main>
     <footer>
       <h2>Que viva el comunismo y los mamertos 2022</h2>

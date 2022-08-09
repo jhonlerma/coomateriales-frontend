@@ -1,5 +1,5 @@
 <template>
-  <div class="card col-6 justify-self-center">
+  <div class="card col-6 container p-0">
     <div class="card-header">
       Inicio de Sesión
     </div>
