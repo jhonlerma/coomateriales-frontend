@@ -12,27 +12,32 @@
         <a class="nav-link text-white" v-on:click="loadSignUp"><i class="bi bi-people-fill"></i><span>Registro
             de Usuarios</span></a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link text-white" v-on:click="loadSignUpCategoria"><i class="bi bi-star-fill"></i><span>Registro de
+      <li v-if="is_auth_props" class="nav-item">
+        <a class="nav-link text-white" v-on:click="loadSignUpCategoria"><i
+            class="bi bi-star-fill"></i><span>Registro de
             Categoría</span></a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link text-white" v-on:click="loadSignUpFabricante"><i class="bi bi-star-fill"></i><span>Registro
+      <li v-if="is_auth_props" class="nav-item">
+        <a class="nav-link text-white"  v-on:click="loadSignUpFabricante"><i
+            class="bi bi-star-fill"></i><span>Registro
             de
             Fabricante</span></a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link text-white" v-on:click="loadSignUpProveedor"><i class="bi bi-people-fill"></i><span>Registro
+      <li v-if="is_auth_props" class="nav-item">
+        <a class="nav-link text-white" v-on:click="loadSignUpProveedor"><i
+            class="bi bi-people-fill"></i><span>Registro
             de
             Proveedores</span></a>
 
       </li>
-      <li class="nav-item">
-        <a class="nav-link text-white" v-on:click="loadSignUpProducto"><i class="bi bi-star-fill"></i><span>Registro de
+      <li v-if="is_auth_props" class="nav-item">
+        <a class="nav-link text-white" v-on:click="loadSignUpProducto"><i
+            class="bi bi-star-fill"></i><span>Registro de
             Productos</span></a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link text-white" href="#"><i class="bi bi-box-arrow-left"></i><span>Salir</span></a>
+      <li v-if="is_auth_props" class="nav-item">
+        <a class="nav-link text-white" v-on:click="logOut" href="#"><i
+            class="bi bi-box-arrow-left"></i><span>Salir</span></a>
 
       </li>
 
@@ -54,6 +59,13 @@ export default {
       loaded: false,
     }
   },
+  props: {
+    is_auth_props: {
+      type: Boolean,
+      required: true
+    }
+  },
+
   methods: {
     loadSignUp: function () {
       this.$router.push({ name: 'coSignUp' })
@@ -73,6 +85,13 @@ export default {
     loadSignUpProducto: function () {
       this.$router.push({ name: 'coSignUpProducto' })
     },
+    logOut: function () {
+      localStorage.clear();
+      this.$emit('verifyAuth');
+      alert("Sesión cerrada");
+
+    },
+
 
   },
   created: async function () {
