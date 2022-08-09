@@ -1,21 +1,30 @@
 <template>
-  <header class="col-12">
-    <co-appbar v-bind:is_auth_props="is_auth"></co-appbar>
-  </header>
-  <main class="container-fluid p-5 col-12 justify-content-center">
-    <router-view v-on:verifyAuth="verifyAuth" v-on:completedSignUp="completedSignUp" v-on:logOut="logOut">
-    </router-view>
+    <header>
+      <co-appbar></co-appbar>
+    </header>
+    <main>
+      <co-dashboard></co-dashboard>
+      <router-view v-on:completedLogIn="completedLogIn"
+                     v-on:completedSignUp="completedSignUp"
+                     v-on:logOut="logOut"
+                     v-on:completedSignUpProveedores="completedSignUpProveedores"
+                     v-on:completedSignUpCategoria="completedSignUpCategoria"
+                     v-on:completedSignUpProducto="completedSignUpProducto"
+                     v-on:completedSignUpFabricante="completedSignUpFabricante"
+                     >
 
-  </main>
-  <footer class="container-fluid col-12 justify-content-center">
-    <h2>Que viva el comunismo y los mamertos 2022</h2>
-  </footer>
+        </router-view>
+    </main>
+    <footer>
+      <h2>Que viva el comunismo y los mamertos 2022</h2>
+    </footer>
 </template>
 
 <script>
 import axios from 'axios';
 import CoAppbar from './components/CoAppbar.vue'
-export default {
+import CoDashboard from './components/CoDashboard.vue'
+export default{
   name: 'App',
   data: function () {
     return {
@@ -51,6 +60,7 @@ export default {
   },
   components: {
     CoAppbar,
+    CoDashboard,
   },
   created: function () {
     this.verifyAuth()
