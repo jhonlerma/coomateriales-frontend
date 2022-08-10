@@ -48,7 +48,8 @@ export default {
             token_refresh: result.data.refresh,
             nombre_categoria: this.categoria.nombre_categoria
           }
-          this.$emit('completedSignUpCategoria', dataSignUp)
+          this.$emit('completedSignUpCategoria', dataSignUp);
+          this.categoria.nombre_categoria = ""
         })
         .catch((error) => {
           console.log(error)

@@ -49,6 +49,7 @@ export default {
                         nombre_fabricante: this.fabricante.nombre_fabricante
                     }
                     this.$emit('completedSignUpFabricante', dataSignUp)
+                    this.fabricante.nombre_fabricante = ""
                 })
                 .catch((error) => {
                     console.log(error)

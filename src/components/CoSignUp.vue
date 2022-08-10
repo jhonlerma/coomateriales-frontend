@@ -72,6 +72,13 @@ export default {
             username: this.user.username
           }
           this.$emit('completedSignUp', dataSignUp)
+          this.user.username  = ""          
+          this.user.password  = ""
+          this.user.nombre_usuario  = ""
+          this.user.apellido_usuario  = ""
+          this.user.telefono_usuario  = ""
+          this.user.correo_usuario  = ""
+          this.user.direccion_usuario  = ""
         })
         .catch((error) => {
           console.log(error)
