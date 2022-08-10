@@ -32,8 +32,10 @@
                         <td>{{ cat.proveedor_producto }}</td>
                         <td>{{ cat.nombre_producto }}</td>
                         <td>
-                            <button type="button" class="btn btn-success" v-on:click="userEdit"><i class="bi bi-pencil-square"></i></button>
-                            <button type="button" class="btn btn-danger" v-on:click="userDelete(cat.id)"><i class="bi bi-trash"></i></button>
+                            <button type="submit" class="btn btn-success" v-on:click="userEdit"><i
+                                    class="bi bi-pencil-square"></i></button>
+                            <button type="submit" class="btn btn-danger" v-on:click="userDelete(cat.id)"><i
+                                    class="bi bi-trash"></i></button>
                         </td>
                     </tr>
                 </tbody>
@@ -69,24 +71,26 @@ export default {
                     this.$emit("logOut");
                 });
         },
-        userEdit: function(){
+        userEdit: function () {
 
         },
-        userDelete: function(id){
-            if(localStorage.getItem("token_access")===null ||localStorage.getItem("token_refresh")===null ){
-                this.$emit('logOut');
-                return;
-            }
-            this.verifyToken();
-            let token = localStorage.getItem("token_access");
-            axios.delete(
-                `https://coomateriales-backend.herokuapp.com/producto/delete/` + id + `/`,
-                {headers:{'Authorization':`Bearer ${token}`}}
-            ).then((rest) => {
+        userDelete: function (id) {
+            if (id) {
+                if (localStorage.getItem("token_access") === null || localStorage.getItem("token_refresh") === null) {
+                    this.$emit('logOut');
+                    return;
+                }
+                this.verifyToken();
+                let token = localStorage.getItem("token_access");
+                axios.delete(
+                    `https://coomateriales-backend.herokuapp.com/producto/delete/` + id + `/`,
+                    { headers: { 'Authorization': `Bearer ${token}` } }
+                ).then((rest) => {
                     console.log(rest);
                     alert("Dato elminiado");
                     this.$emit('verifyAuth');
                 }).catch((e) => e);
+            }
         }
 
     },

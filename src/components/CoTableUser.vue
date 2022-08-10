@@ -28,7 +28,7 @@
                         <td>{{ user.correo_usuario }}</td>
                         <td>{{ user.direccion_usuario }}</td>
                         <td>
-                            <button type="button" class="btn btn-success" v-on:click="userEdit(user.id)"><i
+                            <button type="submit" class="btn btn-success" v-on:click="userEdit(user.id)"><i
                                     class="bi bi-pencil-square"></i></button>
                         </td>
                     </tr>

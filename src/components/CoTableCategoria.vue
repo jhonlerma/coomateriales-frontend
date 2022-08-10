@@ -18,9 +18,9 @@
                         <th>{{ cat.id }}</th>
                         <td>{{ cat.nombre_categoria }}</td>
                         <td>
-                            <button type="button" class="btn btn-success" v-on:click="userEdit"><i
+                            <button type="submit" class="btn btn-success" v-on:click="userEdit"><i
                                     class="bi bi-pencil-square"></i></button>
-                            <button type="button" class="btn btn-danger" v-on:click="userDelete(cat.id)"><i
+                            <button type="submit" class="btn btn-danger" v-on:click="userDelete(cat.id)"><i
                                     class="bi bi-trash"></i></button>
                         </td>
                     </tr>
