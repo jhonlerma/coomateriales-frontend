@@ -31,10 +31,18 @@
                                 <input type="text" class="form-control" v-model="producto.detalle_producto"
                                     placeholder="Detalle del Producto">
                             </div>
-
-                            
-                            <!--falta categoria, fabricante y proveedor -->
-
+                            <div class="mb-3">
+                                <label class="form-label">Categoría</label>
+                                <input type="number" class="form-control" v-model="producto.categoria" placeholder="id de la categoría">
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Fabricante</label>
+                                <input type="number" class="form-control" v-model="producto.fabricante" placeholder="id del fabricante">
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Proveedor</label>
+                                <input type="number" class="form-control" v-model="producto.proveedor" placeholder="id del proveedor">
+                            </div>
                             <button type="submit" class="btn btn-primary">Registrar</button>
                         </form>
                     </div>
@@ -53,12 +61,12 @@ export default {
             producto: {
                 nombre_producto: "",
                 marca_producto: "",
-                precio_unit_producto: "",
+                precio_unit_producto: 0,
                 resumen_producto: "",
                 detalle_producto: "",
-                categoria: "",
-                fabricante: "",
-                proveedor: ""
+                categoria: 0,
+                fabricante: 0,
+                proveedor: 0
             }
         }
     },
