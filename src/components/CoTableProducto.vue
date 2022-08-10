@@ -1,47 +1,47 @@
 <template>
-  <div class="container">
-    <div>
-      <h2>Productos</h2>
+    <div class="container">
+        <div>
+            <h2>Productos</h2>
+        </div>
+        <br>
+        <div class="table-responsive">
+            <table class="table table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">Id</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Marca</th>
+                        <th scope="col">Precio</th>
+                        <th scope="col">Resumen</th>
+                        <th scope="col">Detalle</th>
+                        <th scope="col">Id Categoria</th>
+                        <th scope="col">Id Fabricante</th>
+                        <th scope="col">Id Proveedor</th>
+                        <th scope="col">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr v-for="(cat, index) in productos" :key="index">
+                        <th>{{ cat.id }}</th>
+                        <td>{{ cat.nombre_producto }}</td>
+                        <td>{{ cat.marca_producto }}</td>
+                        <td>{{ cat.resumen_producto }}</td>
+                        <td>{{ cat.detalle_producto }}</td>
+                        <td>{{ cat.categoria_producto }}</td>
+                        <td>{{ cat.fabricante_producto }}</td>
+                        <td>{{ cat.proveedor_producto }}</td>
+                        <td>{{ cat.nombre_producto }}</td>
+                        <td>
+                            <button type="submit" class="btn btn-success" v-on:click="userEdit"><i
+                                    class="bi bi-pencil-square"></i></button>
+                            <button type="submit" class="btn btn-danger" v-on:click="userDelete(cat.id)"><i
+                                    class="bi bi-trash"></i></button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
-    <br>
-    <div class="table-responsive">
-      <table class="table table-bordered">
-        <thead>
-          <tr>
-            <th scope="col">Id</th>
-            <th scope="col">Nombre</th>
-            <th scope="col">Marca</th>
-            <th scope="col">Precio</th>
-            <th scope="col">Resumen</th>
-            <th scope="col">Detalle</th>
-            <th scope="col">Id Categoria</th>
-            <th scope="col">Id Fabricante</th>
-            <th scope="col">Id Proveedor</th>
-            <th scope="col">Acciones</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr v-for="(cat, index) in productos" :key="index">
-            <th>{{ cat.id }}</th>
-            <td>{{ cat.nombre_producto }}</td>
-            <td>{{ cat.marca_producto }}</td>
-            <td>{{ cat.resumen_producto }}</td>
-            <td>{{ cat.detalle_producto }}</td>
-            <td>{{ cat.categoria_producto }}</td>
-            <td>{{ cat.fabricante_producto }}</td>
-            <td>{{ cat.proveedor_producto }}</td>
-            <td>{{ cat.nombre_producto }}</td>
-            <td>
-              <button type="button" class="btn btn-success" v-on:click="userEdit"><i
-                  class="bi bi-pencil-square"></i></button>
-              <button type="button" class="btn btn-danger" v-on:click="userDelete(cat.id)"><i
-                  class="bi bi-trash"></i></button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
 </template>
 <script>
 import axios from 'axios';
@@ -73,20 +73,25 @@ export default {
     },
     userEdit: function () {
 
-    },
-    userDelete: function (id) {
-      alert(id);
-      if (localStorage.getItem("token_access") === null || localStorage.getItem("token_refresh") === null) {
-        this.$emit('logOut');
-        return;
-      }
-      this.verifyToken();
-      let token = localStorage.getItem("token_access");
-      axios.delete(
-        `https://coomateriales-backend.herokuapp.com/producto/delete/${{ id }}/`,
-        { headers: { 'Authorization': `Bearer ${token}` } }
-      )
-    }
+        },
+        userDelete: function (id) {
+            if (id) {
+                if (localStorage.getItem("token_access") === null || localStorage.getItem("token_refresh") === null) {
+                    this.$emit('logOut');
+                    return;
+                }
+                this.verifyToken();
+                let token = localStorage.getItem("token_access");
+                axios.delete(
+                    `https://coomateriales-backend.herokuapp.com/producto/delete/` + id + `/`,
+                    { headers: { 'Authorization': `Bearer ${token}` } }
+                ).then((rest) => {
+                    console.log(rest);
+                    alert("Dato elminiado");
+                    this.$emit('verifyAuth');
+                }).catch((e) => e);
+            }
+        }
 
   },
   created: async function () {

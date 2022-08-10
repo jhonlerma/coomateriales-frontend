@@ -1,34 +1,33 @@
 <template>
-  <div class="container">
-    <div>
-      <h2>Categorias</h2>
+    <div class="container">
+        <div>
+            <h2>Categorias</h2>
+        </div>
+        <br>
+        <div class="table-responsive" >
+            <table class="table table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">Id</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr v-for="(cat, index) in categorias" :key="index">
+                        <th>{{ cat.id }}</th>
+                        <td>{{ cat.nombre_categoria }}</td>
+                        <td>
+                            <button type="submit" class="btn btn-success" v-on:click="userEdit"><i
+                                    class="bi bi-pencil-square"></i></button>
+                            <button type="submit" class="btn btn-danger" v-on:click="userDelete(cat.id)"><i
+                                    class="bi bi-trash"></i></button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
-    <br>
-    <div class="table-responsive">
-      <table class="table table-bordered">
-        <thead>
-          <tr>
-            <th scope="col">Id</th>
-            <th scope="col">Nombre</th>
-            <th scope="col">Acciones</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr v-for="(cat, index) in categorias" :key="index">
-            <th>{{ cat.id }}</th>
-            <td>{{ cat.nombre_categoria }}</td>
-            <td>
-              <button type="button" class="btn btn-success" v-on:click="userEdit"><i
-                  class="bi bi-pencil-square"></i></button>
-              <button type="button" class="btn btn-danger" v-on:click="userDelete(cat.id)"><i
-                  class="bi bi-trash"></i></button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-  <co-edit-categoria-modal></co-edit-categoria-modal>
 </template>
 <script>
 import CoEditCategoriaModal from './CoEditCategoriaModal.vue';
@@ -64,20 +63,25 @@ export default {
     },
     userEdit: function () {
 
-    },
-    userDelete: function (id) {
-      alert(id);
-      if (localStorage.getItem("token_access") === null || localStorage.getItem("token_refresh") === null) {
-        this.$emit('logOut');
-        return;
-      }
-      this.verifyToken();
-      let token = localStorage.getItem("token_access");
-      axios.delete(
-        `https://coomateriales-backend.herokuapp.com/categoria/delete/${{ id }}/`,
-        { headers: { 'Authorization': `Bearer ${token}` } }
-      )
-    }
+        },
+        userDelete: function (id) {
+            if (id) {
+                if (localStorage.getItem("token_access") === null || localStorage.getItem("token_refresh") === null) {
+                    this.$emit('logOut');
+                    return;
+                }
+                this.verifyToken();
+                let token = localStorage.getItem("token_access");
+                axios.delete(
+                    `https://coomateriales-backend.herokuapp.com/categoria/delete/` + id + `/`,
+                    { headers: { 'Authorization': `Bearer ${token}` } }
+                ).then((rest) => {
+                    console.log(rest);
+                    alert("Dato elminiado");
+                    this.$emit('verifyAuth');
+                }).catch((e) => e);
+            }
+        }
 
   },
   created: async function () {

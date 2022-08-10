@@ -69,6 +69,11 @@ export default {
             nit_proveedor: this.proveedor.nit_proveedor
           }
           this.$emit('completedSignUpProveedor', dataSignUp)
+          this.proveedor.nit_proveedor = ""
+          this.proveedor.nombre_proveedor = ""
+          this.proveedor.telefono_proveedor = ""
+          this.proveedor.correo_proveedor = ""
+          this.proveedor.direccion_proveedor = ""
         })
         .catch((error) => {
           console.log(error)

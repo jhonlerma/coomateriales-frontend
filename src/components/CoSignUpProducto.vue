@@ -32,15 +32,18 @@
             </div>
             <div class="mb-3">
               <label class="form-label">Categoría</label>
-              <input type="number" class="form-control" v-model="producto.categoria_producto" placeholder="id de la categoría">
+              <input type="number" class="form-control" v-model="producto.categoria_producto"
+                placeholder="id de la categoría">
             </div>
             <div class="mb-3">
               <label class="form-label">Fabricante</label>
-              <input type="number" class="form-control" v-model="producto.fabricante_producto" placeholder="id del fabricante">
+              <input type="number" class="form-control" v-model="producto.fabricante_producto"
+                placeholder="id del fabricante">
             </div>
             <div class="mb-3">
               <label class="form-label">Proveedor</label>
-              <input type="number" class="form-control" v-model="producto.proveedor_producto" placeholder="id del proveedor">
+              <input type="number" class="form-control" v-model="producto.proveedor_producto"
+                placeholder="id del proveedor">
             </div>
             <button type="submit" class="btn btn-primary">Registrar</button>
           </form>
@@ -88,6 +91,16 @@ export default {
             nombre_producto: this.producto.nombre_producto
           }
           this.$emit('completedSignUpProducto', dataSignUp)
+
+          this.producto.nombre_producto = ""
+          this.producto.marca_producto = ""
+          this.producto.precio_unit_producto = 0
+          this.producto.resumen_producto = ""
+          this.producto.detalle_producto = ""
+          this.producto.categoria_producto = 0
+          this.producto.fabricante_producto = 0
+          this.producto.proveedor_producto = 0
+
         })
         .catch((error) => {
           console.log(error)
