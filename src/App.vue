@@ -3,7 +3,7 @@
     <co-appbar v-bind:is_auth_props="is_auth"></co-appbar>
   </header>
   <main>
-    <co-dashboard v-on:verifyAuth="verifyAuth" v-bind:is_auth_props="is_auth"></co-dashboard>
+    <co-dashboard v-on:verifyAuth="verifyAuth" v-if="is_auth" v-bind:is_auth_props="is_auth"></co-dashboard>
     <section class="container-fluid p-5">
       <router-view v-on:verifyAuth="verifyAuth" v-on:completedSignUp="completedSignUp" v-on:logOut="logOut"
         v-on:completedSignUpProveedores="completedSignUpProveedores"
