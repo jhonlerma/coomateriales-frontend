@@ -5,9 +5,12 @@
   <main>
     <co-dashboard v-on:verifyAuth="verifyAuth" v-if="is_auth" v-bind:is_auth_props="is_auth"></co-dashboard>
     <section class="container-fluid p-5">
-      <router-view v-on:verifyAuth="verifyAuth" v-on:completedSignUp="completedSignUp" v-on:logOut="logOut"
+      <router-view v-on:verifyAuth="verifyAuth"
+        v-on:completedSignUp="completedSignUp"
+        v-on:logOut="logOut"
         v-on:completedSignUpProveedores="completedSignUpProveedores"
-        v-on:completedSignUpCategoria="completedSignUpCategoria" v-on:completedSignUpProducto="completedSignUpProducto"
+        v-on:completedSignUpCategoria="completedSignUpCategoria"
+        v-on:completedSignUpProducto="completedSignUpProducto"
         v-on:completedSignUpFabricante="completedSignUpFabricante">
 
       </router-view>

@@ -36,6 +36,11 @@
             Productos</span></a>
       </li>
       <li v-if="is_auth_props" class="nav-item">
+        <a class="nav-link text-white" v-on:click="loadUserAccount"><i
+            class="bi bi-person-fill"></i><span>Mi Cuenta</span></a>
+      </li>
+
+      <li v-if="is_auth_props" class="nav-item">
         <a class="nav-link text-white" v-on:click="logOut" href="#"><i
             class="bi bi-box-arrow-left"></i><span>Salir</span></a>
 
@@ -85,6 +90,10 @@ export default {
     loadSignUpProducto: function () {
       this.$router.push({ name: 'coSignUpProducto' })
     },
+    loadUserAccount: function () {
+      this.$router.push({ name: 'coAccount' })
+    },
+
     logOut: function () {
       localStorage.clear();
       this.$emit('verifyAuth');
