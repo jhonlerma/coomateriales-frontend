@@ -27,7 +27,7 @@
         <a class="nav-link text-white" v-on:click="loadSignUpProveedor"><i
             class="bi bi-people-fill"></i><span>Registro
             de
-            Proveedores</span></a>
+            Proveedor</span></a>
 
       </li>
       <li v-if="is_auth_props" class="nav-item">
