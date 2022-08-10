@@ -50,9 +50,26 @@ export default {
       alert("Registro exitoso");
       this.completedLogIn(data)
     },
+    completedSignUpProveedor: function (data) {
+      alert("Registro exitoso");
+      this.completedLogIn(data)
+    },
+    completedSignUpFabricante: function (data) {
+      alert("Registro exitoso");
+      this.completedLogIn(data)
+    },
+    completedSignUpCategoria: function (data) {
+      alert("Registro exitoso");
+      this.completedLogIn(data)
+    },
+    completedSignUpProducto: function (data) {
+      alert("Registro exitoso");
+      this.completedLogIn(data)
+    },
+
     verifyToken: function () {
       return axios.post(
-        "https://mision-tic-c3-g6.herokuapp.com/refresh/",
+        "https://coomateriales-backend.herokuapp.com/refresh/",
         { refresh: localStorage.getItem("token_refresh") },
         { headers: {} })
         .then((result) => {

@@ -9,6 +9,8 @@ import CoSignUpProveedor from './components/CoSignUpProveedor.vue'
 import CoSignUpCategoria from './components/CoSignUpCategoria.vue'
 import CoSignUpFabricante from './components/CoSignUpFabricante.vue'
 import CoSignUpProducto from './components/CoSignUpProducto.vue'
+import CoTableUser from './components/CoTableUser.vue'
+import CoTableCategoria from './components/CoTableCategoria.vue'
 
 
 const routes = [
@@ -56,7 +58,17 @@ const routes = [
     path: '/user/account',
     name: 'coAccount',
     component: CoAccount
-  }
+  },
+  {
+    path: '/user/list',
+    name: 'coTableUser',
+    component: CoTableUser
+  },
+  {
+    path: '/categoria/list',
+    name: 'coTableCategoria',
+    component: CoTableCategoria
+  },
 ];
 
 const router = createRouter({

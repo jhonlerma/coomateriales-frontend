@@ -43,7 +43,7 @@ export default {
     name: 'CoSignUpProveedor',
     data: function () {
         return {
-            Proveedor: {
+            proveedor: {
                 nit_proveedor: "",
                 nombre_proveedor: "",
                 telefono_proveedor: "",
@@ -53,24 +53,42 @@ export default {
         }
     },
     methods: {
-        processSignUp: function () {
+        processSignUpProveedor: function () {
+            if(localStorage.getItem("token_access")===null ||localStorage.getItem("token_refresh")===null ){
+                this.$emit('logOut');
+                return;
+            }
+            this.verifyToken();
+            let token = localStorage.getItem("token_access");
             axios.post(
                 "https://coomateriales-backend.herokuapp.com/proveedor/create/",
-                this.Proveedor,
-                { headers: {} }
+                this.proveedor,
+                { headers: {'Authorization':`Bearer ${token}`} }
             )
                 .then((result) => {
                     let dataSignUp = {
                         token_access: result.data.access,
                         token_refresh: result.data.refresh,
-                        nit_proveedor: this.Proveedor.nit_proveedor
+                        nit_proveedor: this.proveedor.nit_proveedor
                     }
-                    this.$emit('completedSignUpProveedores', dataSignUp)
+                    this.$emit('completedSignUpProveedor', dataSignUp)
                 })
                 .catch((error) => {
                     console.log(error)
                     alert("ERROR: Fallo en el registro");
                 });
+        },
+        verifyToken: function(){
+            return axios.post(
+                "https://coomateriales-backend.herokuapp.com/refresh/",
+                {refresh: localStorage.getItem("token_refresh")},
+                {headers:{}})
+                .then((result)=>{
+                    localStorage.setItem("token_access",result.data.access);
+                })
+                .catch(()=>{
+                    this.$emit('logOut')
+                })    
         }
     }
 }

@@ -9,30 +9,23 @@
         <a class="nav-link text-white" v-on:click="loadHome"><i class="bi bi-house"></i><span>Inicio</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link text-white" v-on:click="loadSignUp"><i class="bi bi-people-fill"></i><span>Registro
-            de Usuarios</span></a>
+        <a class="nav-link text-white" v-on:click="loadSignUp"><i class="bi bi-people-fill"></i><span>Registro de
+            Usuarios</span></a>
       </li>
       <li v-if="is_auth_props" class="nav-item">
-        <a class="nav-link text-white" v-on:click="loadSignUpCategoria"><i
-            class="bi bi-star-fill"></i><span>Registro de
+        <a class="nav-link text-white" v-on:click="loadSignUpCategoria"><i class="bi bi-star-fill"></i><span>Registro de
             Categoría</span></a>
       </li>
       <li v-if="is_auth_props" class="nav-item">
-        <a class="nav-link text-white"  v-on:click="loadSignUpFabricante"><i
-            class="bi bi-star-fill"></i><span>Registro
-            de
-            Fabricante</span></a>
+        <a class="nav-link text-white" v-on:click="loadSignUpFabricante"><i class="bi bi-star-fill"></i><span>Registro
+            de Fabricante</span></a>
       </li>
       <li v-if="is_auth_props" class="nav-item">
-        <a class="nav-link text-white" v-on:click="loadSignUpProveedor"><i
-            class="bi bi-people-fill"></i><span>Registro
-            de
-            Proveedores</span></a>
-
+        <a class="nav-link text-white" v-on:click="loadSignUpProveedor"><i class="bi bi-people-fill"></i><span>Registro
+            de Proveedor</span></a>
       </li>
       <li v-if="is_auth_props" class="nav-item">
-        <a class="nav-link text-white" v-on:click="loadSignUpProducto"><i
-            class="bi bi-star-fill"></i><span>Registro de
+        <a class="nav-link text-white" v-on:click="loadSignUpProducto"><i class="bi bi-star-fill"></i><span>Registro de
             Productos</span></a>
       </li>
       <li v-if="is_auth_props" class="nav-item">
@@ -41,9 +34,14 @@
       </li>
 
       <li v-if="is_auth_props" class="nav-item">
+        <a class="nav-link text-white" v-on:click="loadTableUser"><i class="bi bi-star-fill"></i><span>Usuarios</span></a>
+      </li>
+      <li v-if="is_auth_props" class="nav-item">
+        <a class="nav-link text-white" v-on:click="loadTableCategoria"><i class="bi bi-star-fill"></i><span>Categorias</span></a>
+      </li>
+      <li v-if="is_auth_props" class="nav-item">
         <a class="nav-link text-white" v-on:click="logOut" href="#"><i
             class="bi bi-box-arrow-left"></i><span>Salir</span></a>
-
       </li>
 
     </ul>
@@ -94,6 +92,12 @@ export default {
       this.$router.push({ name: 'coAccount' })
     },
 
+    loadTableUser: function(){
+      this.$router.push({ name: 'coTableUser' })
+    },
+    loadTableCategoria:function(){
+      this.$router.push({ name: 'coTableCategoria' })
+    },
     logOut: function () {
       localStorage.clear();
       this.$emit('verifyAuth');
@@ -102,9 +106,6 @@ export default {
     },
 
 
-  },
-  created: async function () {
-    this.getData();
   }
 }
 </script>
