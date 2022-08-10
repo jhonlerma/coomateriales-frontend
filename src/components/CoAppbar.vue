@@ -27,7 +27,6 @@ export default {
   },
   props: {
     is_auth_props: {
-      type: Boolean,
       required: true
     }
   },
@@ -45,10 +44,6 @@ export default {
       this.$router.push({ name: 'coAccount' })
     },
   },
-  created: async function () {
-    this.getData();
-  }
-
 }
 </script>
 

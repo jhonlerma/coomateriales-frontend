@@ -5,12 +5,9 @@
   <main>
     <co-dashboard v-on:verifyAuth="verifyAuth" v-if="is_auth" v-bind:is_auth_props="is_auth"></co-dashboard>
     <section class="container-fluid p-5">
-      <router-view v-on:verifyAuth="verifyAuth"
-        v-on:completedSignUp="completedSignUp"
-        v-on:logOut="logOut"
+      <router-view v-on:verifyAuth="verifyAuth" v-on:completedSignUp="completedSignUp" v-on:logOut="logOut"
         v-on:completedSignUpProveedor="completedSignUpProveedor"
-        v-on:completedSignUpCategoria="completedSignUpCategoria"
-        v-on:completedSignUpProducto="completedSignUpProducto"
+        v-on:completedSignUpCategoria="completedSignUpCategoria" v-on:completedSignUpProducto="completedSignUpProducto"
         v-on:completedSignUpFabricante="completedSignUpFabricante">
 
       </router-view>
@@ -36,7 +33,6 @@ export default {
   methods: {
     verifyAuth: function () {
       this.is_auth = localStorage.getItem("isAuth") || false
-      console.log("is_auth: " + this.is_auth);
       if (this.is_auth == false) {
         this.$router.push({ name: 'coLogIn' });
         this.is_auth_props = this.is_auth;
@@ -71,9 +67,16 @@ export default {
           localStorage.setItem("token_access", result.data.access);
         })
         .catch(() => {
-          this.$emit('logOut')
+          this.logOut();
         })
-    }
+    },
+    logOut: function () {
+      localStorage.clear();
+      this.$emit('verifyAuth');
+      alert("Sesión cerrada");
+
+    },
+
 
   },
   components: {

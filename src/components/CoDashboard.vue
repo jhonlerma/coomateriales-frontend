@@ -29,16 +29,17 @@
             Productos</span></a>
       </li>
       <li v-if="is_auth_props" class="nav-item">
-        <a class="nav-link text-white" v-on:click="loadUserAccount"><i class="bi bi-person-fill"></i><span>Mi
-            Cuenta</span></a>
-      </li>
-      <li v-if="is_auth_props" class="nav-item">
         <a class="nav-link text-white" v-on:click="loadTableUser"><i
             class="bi bi-star-fill"></i><span>Usuarios</span></a>
       </li>
       <li v-if="is_auth_props" class="nav-item">
         <a class="nav-link text-white" v-on:click="loadTableCategoria"><i
             class="bi bi-star-fill"></i><span>Categorias</span></a>
+      </li>
+      <hr>
+      <li v-if="is_auth_props" class="nav-item">
+        <a class="nav-link text-white" v-on:click="loadUserAccount"><i class="bi bi-person-fill"></i><span>Mi
+            Cuenta</span></a>
       </li>
       <li v-if="is_auth_props" class="nav-item">
         <a class="nav-link text-white" v-on:click="logOut" href="#"><i
@@ -64,7 +65,6 @@ export default {
   },
   props: {
     is_auth_props: {
-      type: Boolean,
       required: true
     }
   },
