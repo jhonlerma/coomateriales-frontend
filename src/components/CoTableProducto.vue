@@ -73,7 +73,6 @@ export default {
 
         },
         userDelete: function(id){
-            alert(id);
             if(localStorage.getItem("token_access")===null ||localStorage.getItem("token_refresh")===null ){
                 this.$emit('logOut');
                 return;
@@ -81,9 +80,13 @@ export default {
             this.verifyToken();
             let token = localStorage.getItem("token_access");
             axios.delete(
-                `https://coomateriales-backend.herokuapp.com/producto/delete/${{id}}/`,
+                `https://coomateriales-backend.herokuapp.com/producto/delete/` + id + `/`,
                 {headers:{'Authorization':`Bearer ${token}`}}
-            )
+            ).then((rest) => {
+                    console.log(rest);
+                    alert("Dato elminiado");
+                    this.$emit('verifyAuth');
+                }).catch((e) => e);
         }
 
     },

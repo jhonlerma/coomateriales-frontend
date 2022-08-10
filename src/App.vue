@@ -74,8 +74,8 @@ export default {
       localStorage.clear();
       this.$emit('verifyAuth');
       alert("Sesión cerrada");
-
     },
+
 
 
   },

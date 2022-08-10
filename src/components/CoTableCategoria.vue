@@ -4,7 +4,7 @@
             <h2>Categorias</h2>
         </div>
         <br>
-        <div class="table-responsive">
+        <div class="table-responsive" >
             <table class="table table-bordered">
                 <thead>
                     <tr>
@@ -18,8 +18,10 @@
                         <th>{{ cat.id }}</th>
                         <td>{{ cat.nombre_categoria }}</td>
                         <td>
-                            <button type="button" class="btn btn-success" v-on:click="userEdit"><i class="bi bi-pencil-square"></i></button>
-                            <button type="button" class="btn btn-danger" v-on:click="userDelete(cat.id)"><i class="bi bi-trash"></i></button>
+                            <button type="button" class="btn btn-success" v-on:click="userEdit"><i
+                                    class="bi bi-pencil-square"></i></button>
+                            <button type="button" class="btn btn-danger" v-on:click="userDelete(cat.id)"><i
+                                    class="bi bi-trash"></i></button>
                         </td>
                     </tr>
                 </tbody>
@@ -33,7 +35,7 @@ export default {
     name: "coTableCategoria",
     data: function () {
         return {
-            categorias: []
+            categorias: [],
         };
     },
     methods: {
@@ -55,21 +57,26 @@ export default {
                     this.$emit("logOut");
                 });
         },
-        userEdit: function(){
+        userEdit: function () {
 
         },
-        userDelete: function(id){
-            alert(id);
-            if(localStorage.getItem("token_access")===null ||localStorage.getItem("token_refresh")===null ){
-                this.$emit('logOut');
-                return;
+        userDelete: function (id) {
+            if (id) {
+                if (localStorage.getItem("token_access") === null || localStorage.getItem("token_refresh") === null) {
+                    this.$emit('logOut');
+                    return;
+                }
+                this.verifyToken();
+                let token = localStorage.getItem("token_access");
+                axios.delete(
+                    `https://coomateriales-backend.herokuapp.com/categoria/delete/` + id + `/`,
+                    { headers: { 'Authorization': `Bearer ${token}` } }
+                ).then((rest) => {
+                    console.log(rest);
+                    alert("Dato elminiado");
+                    this.$emit('verifyAuth');
+                }).catch((e) => e);
             }
-            this.verifyToken();
-            let token = localStorage.getItem("token_access");
-            axios.delete(
-                `https://coomateriales-backend.herokuapp.com/categoria/delete/${{id}}/`,
-                {headers:{'Authorization':`Bearer ${token}`}}
-            )
         }
 
     },
