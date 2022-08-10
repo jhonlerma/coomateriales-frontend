@@ -4,7 +4,6 @@
       <div class="card p-0" style="border-radius: 15px">
         <img src="https://imagenes.20minutos.es/files/image_990_v3/uploads/imagenes/2022/06/20/gustavo-petro-2.jpeg"
           class="card-img-top" alt="foto usuario">
-
         <div class="card-body p-5">
           <h2 class="text-uppercase text-center mb-3">{{ username }}</h2>
           <div class="mb-2">

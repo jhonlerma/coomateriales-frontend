@@ -29,21 +29,21 @@
             Productos</span></a>
       </li>
       <li v-if="is_auth_props" class="nav-item">
-        <a class="nav-link text-white" v-on:click="loadUserAccount"><i
-            class="bi bi-person-fill"></i><span>Mi Cuenta</span></a>
-      </li>
-
-      <li v-if="is_auth_props" class="nav-item">
-        <a class="nav-link text-white" v-on:click="loadTableUser"><i class="bi bi-star-fill"></i><span>Usuarios</span></a>
+        <a class="nav-link text-white" v-on:click="loadUserAccount"><i class="bi bi-person-fill"></i><span>Mi
+            Cuenta</span></a>
       </li>
       <li v-if="is_auth_props" class="nav-item">
-        <a class="nav-link text-white" v-on:click="loadTableCategoria"><i class="bi bi-star-fill"></i><span>Categorias</span></a>
+        <a class="nav-link text-white" v-on:click="loadTableUser"><i
+            class="bi bi-star-fill"></i><span>Usuarios</span></a>
+      </li>
+      <li v-if="is_auth_props" class="nav-item">
+        <a class="nav-link text-white" v-on:click="loadTableCategoria"><i
+            class="bi bi-star-fill"></i><span>Categorias</span></a>
       </li>
       <li v-if="is_auth_props" class="nav-item">
         <a class="nav-link text-white" v-on:click="logOut" href="#"><i
             class="bi bi-box-arrow-left"></i><span>Salir</span></a>
       </li>
-
     </ul>
     <hr>
   </div>
@@ -91,11 +91,10 @@ export default {
     loadUserAccount: function () {
       this.$router.push({ name: 'coAccount' })
     },
-
-    loadTableUser: function(){
+    loadTableUser: function () {
       this.$router.push({ name: 'coTableUser' })
     },
-    loadTableCategoria:function(){
+    loadTableCategoria: function () {
       this.$router.push({ name: 'coTableCategoria' })
     },
     logOut: function () {

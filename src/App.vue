@@ -8,7 +8,7 @@
       <router-view v-on:verifyAuth="verifyAuth"
         v-on:completedSignUp="completedSignUp"
         v-on:logOut="logOut"
-        v-on:completedSignUpProveedores="completedSignUpProveedores"
+        v-on:completedSignUpProveedor="completedSignUpProveedor"
         v-on:completedSignUpCategoria="completedSignUpCategoria"
         v-on:completedSignUpProducto="completedSignUpProducto"
         v-on:completedSignUpFabricante="completedSignUpFabricante">
@@ -46,25 +46,20 @@ export default {
         this.is_auth_props = this.is_auth;
       }
     },
-    completedSignUp: function (data) {
+    completedSignUp: function () {
       alert("Registro exitoso");
-      this.completedLogIn(data)
     },
-    completedSignUpProveedor: function (data) {
+    completedSignUpProveedor: function () {
       alert("Registro exitoso");
-      this.completedLogIn(data)
     },
-    completedSignUpFabricante: function (data) {
+    completedSignUpFabricante: function () {
       alert("Registro exitoso");
-      this.completedLogIn(data)
     },
-    completedSignUpCategoria: function (data) {
+    completedSignUpCategoria: function () {
       alert("Registro exitoso");
-      this.completedLogIn(data)
     },
-    completedSignUpProducto: function (data) {
+    completedSignUpProducto: function () {
       alert("Registro exitoso");
-      this.completedLogIn(data)
     },
 
     verifyToken: function () {
