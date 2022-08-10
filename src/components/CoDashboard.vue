@@ -30,11 +30,23 @@
       </li>
       <li v-if="is_auth_props" class="nav-item">
         <a class="nav-link text-white" v-on:click="loadTableUser"><i
-            class="bi bi-star-fill"></i><span>Usuarios</span></a>
+            class="bi bi-star-fill"></i><span>Lista de Usuarios</span></a>
       </li>
       <li v-if="is_auth_props" class="nav-item">
         <a class="nav-link text-white" v-on:click="loadTableCategoria"><i
-            class="bi bi-star-fill"></i><span>Categorias</span></a>
+            class="bi bi-star-fill"></i><span>Lista de Categorias</span></a>
+      </li>
+      <li v-if="is_auth_props" class="nav-item">
+        <a class="nav-link text-white" v-on:click="loadTableFabricante"><i
+            class="bi bi-star-fill"></i><span>Lista de Fabricantes</span></a>
+      </li>
+      <li v-if="is_auth_props" class="nav-item">
+        <a class="nav-link text-white" v-on:click="loadTableProducto"><i
+            class="bi bi-star-fill"></i><span>Lista de Productos</span></a>
+      </li>
+      <li v-if="is_auth_props" class="nav-item">
+        <a class="nav-link text-white" v-on:click="loadTableProveedor"><i
+            class="bi bi-star-fill"></i><span>Lista de Proveedores</span></a>
       </li>
       <hr>
       <li v-if="is_auth_props" class="nav-item">
@@ -96,6 +108,15 @@ export default {
     },
     loadTableCategoria: function () {
       this.$router.push({ name: 'coTableCategoria' })
+    },
+    loadTableFabricante: function () {
+      this.$router.push({ name: 'coTableFabricante' })
+    },
+    loadTableProducto: function () {
+      this.$router.push({ name: 'coTableProducto' })
+    },
+    loadTableProveedor: function () {
+      this.$router.push({ name: 'coTableProveedor' })
     },
     logOut: function () {
       localStorage.clear();
