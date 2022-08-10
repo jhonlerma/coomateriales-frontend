@@ -1,5 +1,5 @@
 <template>
-    <div class ="greetings">
+    <div class ="container col-12">
         <h1> ¡Bienvenido <span>{{username}} </span>!</h1>
     </div>
 </template>

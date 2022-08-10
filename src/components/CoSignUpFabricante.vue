@@ -1,23 +1,21 @@
 <template>
-    <div class="container mt-3">
+    <div class="container col-md-12 col-lg-8 col-xl-6 mt-3 p-0">
         <div class="row">
-            <div class="col-12 col-md-6">
-                <div class="card" style="border-radius: 15px">
-                    <div class="card-body p-5">
-                        <h2 class="text-uppercase text-center mb-3">Registro de Fabricante</h2>
-                        <form v-on:submit.prevent="processSignUp">
-                            <div class="mb-3">
-                                <label class="form-label">Nombre Fabricante </label>
-                                <input type="text" class="form-control" v-model="Fabricante.nombre_fabricante"
-                                    placeholder="Nombre categoría">
-                            </div>
-                            <button type="submit" class="btn btn-primary">Registrar</button>
-                        </form>
-                    </div>
-                    </div>
+            <div class="card" style="border-radius: 15px">
+                <div class="card-body p-5">
+                    <h2 class="text-uppercase text-center mb-3">Registro de Fabricante</h2>
+                    <form v-on:submit.prevent="processSignUp">
+                        <div class="mb-3">
+                            <label class="form-label">Nombre Fabricante </label>
+                            <input type="text" class="form-control" v-model="Fabricante.nombre_fabricante"
+                                placeholder="Nombre categoría">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Registrar</button>
+                    </form>
                 </div>
             </div>
         </div>
+    </div>
 </template>
 
 <script>
