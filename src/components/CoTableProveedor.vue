@@ -27,7 +27,7 @@
             <td>{{ cat.direccion_proveedor }}</td>
 
             <td>
-              <button type="submit" class="btn btn-success" v-on:click="userEdit"><i
+              <button type="submit" class="btn btn-success" v-on:click="userEdit(cat)"><i
                   class="bi bi-pencil-square"></i></button>
               <button type="submit" class="btn btn-danger" v-on:click="userDelete(cat.id)"><i
                   class="bi bi-trash"></i></button>
@@ -37,15 +37,27 @@
       </table>
     </div>
   </div>
+    <co-edit-proveedor-modal
+  v-if="is_visible_modal"
+  v-bind:to_edit_props="to_edit"
+  v-on:completedEditProveedor="completedEditProveedor"
+  v-on:close="is_visible_modal = false"></co-edit-proveedor-modal>
 </template>
 <script>
+import CoEditProveedorModal from './CoEditProveedorModal.vue';
 import axios from 'axios';
 export default {
   name: "coTableCategoria",
   data: function () {
     return {
-      proveedores: []
+      proveedores: [],
+      is_visible_modal: false,
+      to_edit: {},
+
     };
+  },
+  components: {
+    CoEditProveedorModal,
   },
   methods: {
     getData: async function () {
@@ -66,11 +78,12 @@ export default {
           this.$emit("logOut");
         });
     },
-    userEdit: function () {
-
+    userEdit: function (cat) {
+      this.is_visible_modal = true;
+      this.to_edit = cat;
     },
     userDelete: function (id) {
-      if(id){
+      if (id) {
         if (localStorage.getItem("token_access") === null || localStorage.getItem("token_refresh") === null) {
           this.$emit('logOut');
           return;
@@ -86,7 +99,13 @@ export default {
           this.$emit('verifyAuth');
         }).catch((e) => e);
       }
+    },
+    completedEditProveedor: function(){
+      this.is_visible_modal = false;
+      this.getData();
+      alert("registro actualizado correctamente");
     }
+
 
   },
   created: async function () {

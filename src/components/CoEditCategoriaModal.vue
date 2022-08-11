@@ -1,93 +1,72 @@
 <template>
-  <div class="modal fade show" tabindex="-1">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">Modal title</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <p>Modal body text goes here.</p>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
-        </div>
-      </div>
-    </div>
-  </div>
-  
-  <!-- <div class="container col-md-12 col-lg-8 col-xl-6 mt-3 p-0">
-    <div class="row">
-      <div class="card" style="border-radius: 15px">
-        <div class="card-body p-5">
-          <h2 class="text-uppercase text-center mb-3">Registro de Categoría</h2>
-          <form v-on:submit.prevent="processSignUpCategoria">
+  <form v-on:submit.prevent="processEditCategoria">
+    <div class="modal fade show modal-active" tabindex="-1">
+      <div class="modal-dialog modal-dialog-centered ">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Editar Categoría</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+              v-on:click="$emit('close')"></button>
+          </div>
+          <div class="modal-body">
+            <div class="mb-3">
+              <p class="m-0"><strong>Categoría: </strong>{{ to_edit_props.id }}</p>
+              <p class="m-0"><strong>Nombre Categoría: </strong>{{ to_edit_props.nombre_categoria }}</p>
+            </div>
             <div class="mb-3">
               <label class="form-label">Nombre Categoría </label>
               <input type="text" class="form-control" v-model="categoria.nombre_categoria"
-                placeholder="Nombre categoría">
+                placeholder="Nuevo Nombre" required>
             </div>
-            <button type="submit" class="btn btn-primary">Registrar</button>
-          </form>
+          </div>
+          <div class="modal-footer">
+
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
+              v-on:click="$emit('close')">Cerrar</button>
+            <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+
+          </div>
         </div>
       </div>
     </div>
-  </div> -->
-  <button class="btn btn-primary" v-on:click="newAddressModal.show()">
-    Show Modal
-</button>
-<div class="modal fade" id="newModal" ref="newModal">
-    <div class="modal-dialog">
-        <div class="modal-content p-3">
-            <div class="modal-header">
-                <h3>Header</h3>
-            </div>
-        </div>
-        <div class="modal-body">
-            body
-        </div>
-    </div>
-</div>
+  </form>
+
+  <div class="modal-backdrop fade show"></div>
 
 </template>
-// import { Modal } from 'bootstrap';
-// export default {
-//     data(){
-//         newModal : null
-//     },
-//     mounted(){
-//         this.newModal = new Modal(this.$refs.nweModal);
-//     }
-// }
 <script>
 import axios from 'axios';
-import { Modal } from 'bootstrap';
 export default {
   name: 'CoEditCategoriaModal',
   data: function () {
     return {
       categoria: {
+        id: 0,
         nombre_categoria: "",
       },
-      newModal : null,
     }
   },
-      mounted(){
-        this.newModal = new Modal(this.$refs.nweModal);
+  props: {
+    to_edit_props: {
+      required: true
+    },
   },
+
   methods: {
-    processSignUpCategoria: function () {
+    processEditCategoria: function () {
+
+      this.categoria.id = this.to_edit_props.id;
+      
       if (localStorage.getItem("token_access") === null || localStorage.getItem("token_refresh") === null) {
         this.$emit('logOut');
         return;
       }
       this.verifyToken();
       let token = localStorage.getItem("token_access");
-      axios.post(
-        "https://coomateriales-backend.herokuapp.com/categoria/create/",
+      axios.put(
+        "https://coomateriales-backend.herokuapp.com/categoria/update/", // colocar el indice que retorna el boton edit
         this.categoria,
-        { headers: { 'Authorization': `Bearer ${token}` } }
+        { headers: { 'Authorization': `Bearer ${token}` }, }
       )
         .then((result) => {
           let dataSignUp = {
@@ -95,7 +74,7 @@ export default {
             token_refresh: result.data.refresh,
             nombre_categoria: this.categoria.nombre_categoria
           }
-          this.$emit('completedSignUpCategoria', dataSignUp)
+          this.$emit('completedEditCategoria', dataSignUp)
         })
         .catch((error) => {
           console.log(error)
@@ -113,7 +92,16 @@ export default {
         .catch(() => {
           this.$emit('logOut')
         })
-    }
-  }
+    },
+  },
+  mounted(){
+    this.categoria = this.to_edit_props;
+  },
+
 }
 </script>
+<style>
+.modal-active {
+  display: block;
+}
+</style>

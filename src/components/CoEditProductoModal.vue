@@ -1,82 +1,90 @@
 <template>
-  <div class="modal" tabindex="-1">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">Modal title</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <p>Modal body text goes here.</p>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="container col-md-12 col-lg-8 col-xl-6 mt-3 p-0">
-    <div class="row">
-      <div class="card" style="border-radius: 15px">
-        <div class="card-body p-5">
-          <h2 class="text-uppercase text-center mb-3">Registro de Producto</h2>
-          <form v-on:submit.prevent="processSignUpProducto">
+  <form v-on:submit.prevent="processEditProducto">
+    <div class="modal fade show modal-active" tabindex="-1">
+      <div class="modal-dialog modal-dialog-centered ">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Editar Producto</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+              v-on:click="$emit('close')"></button>
+          </div>
+          <div class="modal-body">
+            <div class="mb-3">
+              <p class="m-0"><strong>Id Producto: </strong>{{ to_edit_props.id }}</p>
+              <p class="m-0"><strong>Nombre Producto: </strong>{{ to_edit_props.nombre_producto }}</p>
+              <p class="m-0"><strong>Marca Producto: </strong>{{ to_edit_props.marca_producto }}</p>
+              <p class="m-0"><strong>Precio Unidad: </strong>{{ to_edit_props.precio_unit_producto }}</p>
+              <p class="m-0"><strong>Resumen: </strong>{{ to_edit_props.resumen_producto }}</p>
+              <p class="m-0"><strong>Detalle: </strong>{{ to_edit_props.detalle_producto }}</p>
+              <p class="m-0"><strong>Id Categoría: </strong>{{ to_edit_props.categoria_producto }}</p>
+              <p class="m-0"><strong>Id Fabricante: </strong>{{ to_edit_props.fabricante_producto }}</p>
+              <p class="m-0"><strong>Id Proveedor: </strong>{{ to_edit_props.proveedor_producto }}</p>
+            </div>
             <div class="mb-3">
               <label class="form-label">Nombre</label>
               <input type="text" class="form-control" v-model="producto.nombre_producto"
-                placeholder="Nombre del Producto">
+                placeholder="Nuevo Nombre del Producto">
             </div>
             <div class="mb-3">
               <label class="form-label">Marca del Producto</label>
               <input type="text" class="form-control" v-model="producto.marca_producto"
-                placeholder="Marca del Producto">
+                placeholder="Nuevo Marca del Producto">
             </div>
             <div class="mb-3">
               <label class="form-label">Precio Unidad</label>
               <input type="number" class="form-control" v-model="producto.precio_unit_producto"
-                placeholder="Precio Unidad del Producto">
+                placeholder="Nuevo Precio Unidad del Producto">
             </div>
             <div class="mb-3">
               <label class="form-label">Resumen</label>
               <input type="text" class="form-control" v-model="producto.resumen_producto"
-                placeholder="Resumen del Producto">
+                placeholder="Nuevo Resumen del Producto">
             </div>
             <div class="mb-3">
               <label class="form-label">Detalle</label>
               <input type="text" class="form-control" v-model="producto.detalle_producto"
-                placeholder="Detalle del Producto">
+                placeholder="Nuevo Detalle del Producto">
             </div>
             <div class="mb-3">
               <label class="form-label">Categoría</label>
               <input type="number" class="form-control" v-model="producto.categoria_producto"
-                placeholder="id de la categoría">
+                placeholder="Nuevo id de la categoría">
             </div>
             <div class="mb-3">
               <label class="form-label">Fabricante</label>
               <input type="number" class="form-control" v-model="producto.fabricante_producto"
-                placeholder="id del fabricante">
+                placeholder="Nuevo id del fabricante">
             </div>
             <div class="mb-3">
               <label class="form-label">Proveedor</label>
               <input type="number" class="form-control" v-model="producto.proveedor_producto"
-                placeholder="id del proveedor">
+                placeholder="Nuevo id del proveedor">
             </div>
-            <button type="submit" class="btn btn-primary">Registrar</button>
-          </form>
+          </div>
+          <div class="modal-footer">
+
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
+              v-on:click="$emit('close')">Cerrar</button>
+            <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+
+          </div>
         </div>
       </div>
     </div>
-  </div>
+  </form>
+
+  <div class="modal-backdrop fade show"></div>
+
 </template>
 
 <script>
 import axios from 'axios';
 export default {
-  name: 'CoSignUpProveedore',
+  name: 'CoEditProductoModal',
   data: function () {
     return {
       producto: {
+        id: 0,
         nombre_producto: "",
         marca_producto: "",
         precio_unit_producto: 0,
@@ -88,16 +96,23 @@ export default {
       }
     }
   },
+  props: {
+    to_edit_props: {
+      required: true
+    },
+  },
   methods: {
-    processSignUpProducto: function () {
+    processEditProducto: function () {
+        this.producto.id = this.to_edit_props.id;
+
       if (localStorage.getItem("token_access") === null || localStorage.getItem("token_refresh") === null) {
         this.$emit('logOut');
         return;
       }
       this.verifyToken();
       let token = localStorage.getItem("token_access");
-      axios.post(
-        "https://coomateriales-backend.herokuapp.com/producto/create/",
+      axios.put(
+        "https://coomateriales-backend.herokuapp.com/producto/update/",
         this.producto,
         { headers: { 'Authorization': `Bearer ${token}` } }
       )
@@ -107,7 +122,7 @@ export default {
             token_refresh: result.data.refresh,
             nombre_producto: this.producto.nombre_producto
           }
-          this.$emit('completedSignUpProducto', dataSignUp)
+          this.$emit('completedEditProducto', dataSignUp)
         })
         .catch((error) => {
           console.log(error)
@@ -125,7 +140,17 @@ export default {
         .catch(() => {
           this.$emit('logOut')
         })
-    }
-  }
+    },
+
+  },
+  mounted(){
+      this.producto = this.to_edit_props;
+  },
+
 }
 </script>
+<style>
+.modal-active {
+  display: block;
+}
+</style>
