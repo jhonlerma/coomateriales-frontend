@@ -5,7 +5,7 @@
         </div>
         <br>
         <div class="table-responsive" >
-            <table class="table table-bordered table-hover">
+            <table class="table table-bordered table-hover" ref="table">
                 <thead>
                     <tr>
                         <th scope="col">Id</th>
